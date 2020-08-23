@@ -17,11 +17,13 @@
 <div class='wrapper'>
     <div id='wrapperContent' class='content container-fluid'>
         <div id='main'>
+            @include('flash::message')
             @yield('content')
         </div>
     </div>
 </div>
 <script src="{{ url('/js/app.js') }}"></script>
+<script src="{{ url('/js/script.js') }}"></script>
 <script src="https://kit.fontawesome.com/d712964458.js" crossorigin="anonymous"></script>
 @yield('script')
 </body>
