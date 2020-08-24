@@ -56,7 +56,7 @@
                 <form action="{{route('products.image.remove')}}" method="POST">
                     <input type="hidden" name="imageName" value="{{$product->image}}">
                     @csrf
-                    <button type="submit" class="btn btn-primary" onclick="return confirm('Deseja remover a imagem do roduto?');" style="margin-top: 5px">Remover</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Deseja remover a imagem do produto?');" style="margin-top: 5px">Remover</button>
                 </form>
             </div>
         </div>

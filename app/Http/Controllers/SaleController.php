@@ -32,13 +32,9 @@ class SaleController extends Controller
     {
         $data = $request->all();
 
-        $date = $data['date'];
-
-        $date = convertDate($date);
-
-        $data['date'] = $date;
-
         $product = Product::find($data['product_id']);
+
+        $data['date'] = convertDate($data['date']);
 
         $data['discount'] = (float)(str_replace(",",".",$data['discount']));
 
@@ -55,13 +51,7 @@ class SaleController extends Controller
     {
         $sale = $this->sale->findOrFail($sale);
 
-        $date = $sale['date'];
-
-        $splitDate = explode('-', $date);
-
-        $date = "{$splitDate[2]}/{$splitDate[1]}/{$splitDate[0]}";
-
-        $sale['date'] = $date;
+        $sale['date'] = formatDate($sale['date']);
 
         $products = Product::all();
         $customers = Customer::all();
@@ -75,17 +65,11 @@ class SaleController extends Controller
 
         $data = $request->all();
 
-        $date = $data['date'];
+        $product = Product::find($data['product_id']);
 
-        $splitDate = explode('/', $date);
-
-        $date = "{$splitDate[2]}-{$splitDate[1]}-{$splitDate[0]}";
-
-        $data['date'] = $date;
+        $data['date'] = convertDate($data['date']);
 
         $data['discount'] = (float)(str_replace(",",".",$data['discount']));
-
-        $product = Product::find($data['product_id']);
 
         $data['total'] = ($product->price * $data['amount']) - $data['discount'];
 

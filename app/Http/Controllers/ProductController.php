@@ -25,12 +25,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-        if ($request->hasFile('image')) {
-
-            $image = $this->imageUpload($request);
-
-            $data['image'] = $image;
-        }
+        if ($request->hasFile('image')) $data['image'] = $this->imageUpload($request);
 
         $data['price'] = (float)(str_replace(",",".",$data['price']));
 
@@ -54,12 +49,7 @@ class ProductController extends Controller
 
         $data = $request->all();
 
-        if ($request->hasFile('image')) {
-
-            $image = $this->imageUpload($request);
-
-            $data['image'] = $image;
-        }
+        if ($request->hasFile('image')) $data['image'] = $this->imageUpload($request);
 
         $data['price'] = (float)(str_replace(",",".",$data['price']));
 
@@ -78,6 +68,7 @@ class ProductController extends Controller
             $product->delete();
 
             flash('Produto excluído com sucesso')->success();
+
         } catch (\Exception $e) {
 
             if ($e->getCode() == '23000') {
@@ -109,7 +100,7 @@ class ProductController extends Controller
 
         Product::where('image', $imageName)->update(['image' => null]);
 
-        flash('Imagem excluída com sucesso');
+        flash('Imagem removida com sucesso.')->success();
 
         return redirect()->route('product.edit', ['product' => $product_id]);
     }

@@ -63,7 +63,7 @@
                         {{$sale->product->name}}
                     </td>
                     <td>
-                        {{\Carbon\Carbon::parse($sale->date)->format('d/m/Y H:m')}}
+                        {{\Carbon\Carbon::parse($sale->date)->format('d/m/Y')}}
                     </td>
                     <td>
                         R$ {{number_format($sale->total, '2', ',', '.')}}

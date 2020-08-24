@@ -35,6 +35,7 @@ class HomeController extends Controller
             if ($startDate != $endDate) {
 
                 $sales = $this->sale->where('customer_id', request('filterSearch'))->where('date', '>=', $startDate)->where('date', '<=', $endDate)->paginate(5)->appends('filterSearch', request('filterSearch'))->appends('filterDate', request('filterDate'));
+
             } else {
 
                 $sales = $this->sale->where('customer_id', request('filterSearch'))->paginate(5)->appends('filterSearch', request('filterSearch'))->appends('filterDate', request('filterDate'));
